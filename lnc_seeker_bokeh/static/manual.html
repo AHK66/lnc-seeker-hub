@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});">
+</script>
+
+<div style="padding: 20px; max-width: 900px; line-height: 1.6; color: #333; font-family: sans-serif;">
+    <h1 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px;">Welcome to lncRNA Seeker Hub</h1>
+    <p style="font-size: 1.1em;">
+        Welcome to the latest version of the lncRNA Seeker Hub. This platform has evolved significantly,
+        offering high-performance visualization of RNA-Seq data, splice junction analysis, and precise transcript modeling.
+    </p>
+
+    <div style="margin: 25px 0; padding: 18px; background-color: #fff9db; border: 2px solid #fab005; border-radius: 8px;">
+        <h2 style="color: #e67e22; margin-top: 0; font-size: 1.2em;">📍 Coordinate System & Geometry</h2>
+        <p>
+            Coordinates in the lncRNA Seeker Hub are <b>zero-based, half-open</b>: features use the interval $$[start, end)$$.
+            An exon from $$100$$ to $$200$$ covers bases 100–199 and has length $$end - start$$.
+        </p>
+        <p style="margin-top:6px;">
+            Introns are derived as the gaps between exon blocks (start = end of the upstream exon, end = start of the downstream exon) and use the same 0‑based, half‑open coordinates. For example, two exons $$[100,200)$$ and $$[300,400)$$ imply an intron $$[200,300)$$.
+        </p>
+
+        <div style="margin-top:8px; padding:10px; background:#f6f8fa; border-radius:6px;">
+            <strong>Quick conversion (0-based half-open ↔ 1-based inclusive):</strong>
+            <ul style="margin:6px 0 0 18px;">
+                <li><b>0-based, half-open</b> $$[start,end)$$: includes <em>start</em>, excludes <em>end</em>. Length = <code>end - start</code>. Example: $$[100,200)$$ covers bases 100–199 (100 bp).</li>
+                <li><b>1-based, inclusive</b> $$[a,b]$$: includes both endpoints. Length = <code>b - a + 1</code>. The previous example is $$[101,200]$$ in 1-based coordinates.</li>
+                <li><b>Convert</b>: 0→1: <code>start1 = start0 + 1</code>, <code>end1 = end0</code>. 1→0: <code>start0 = start1 - 1</code>, <code>end0 = end1</code>.</li>
+            </ul>
+        </div>
+
+        <p style="margin-top: 8px; font-weight: 600;">
+             Most genome browsers (for example, IGV) show 1-based inclusive coordinates. 
+             <br/>Expect a 1‑bp offset of the start coordinate when copying coordinates between the Hub and 1-based tools—this is normal.
+        </p>
+    </div>
+    
+    <h3 style="color: #2c3e50; margin-top: 25px;">🚀 Getting Started</h3>
+    <ol>
+        <li><b>Select a gene:</b> Use the dropdown in the left sidebar. The Hub dynamically loads and caches data for the selected locus.</li>
+        <li><b>Choose samples:</b> Use either the Sample Selection combo box or the Sample Cohorts list on the right. After selecting samples, the <i>Coverage Plot</i> and <i>Junction Profiles</i> will replace the Sample Selection page.</li>
+        <li><b>Interact with junctions:</b> Click splice‑junction arcs to view read support, or use the context menu to add them to your analysis.</li>
+    </ol>
+
+    <h3 style="color: #2c3e50; margin-top: 25px;">📖 Key Features & Manual</h3>
+    <ul>
+        <li><b>Navigation & Zoom:</b> Use <b>Ctrl + Mouse Wheel</b> over any axis to zoom. Drag to pan. All plots (Annotations, Coverage, Reads) are perfectly synchronized.</li>
+        <li><b>Advanced Filtering:</b> Use the sidebar to filter by <i>Mapping Quality</i>, <i>Minimum Reads</i>, or toggle <i>Mismatch/Insertion Flank Filtering</i> to isolate high-confidence events.</li>
+        <li><b>Comparative Logic:</b> Define rules to highlight junctions present in specific groups and missing in others—ideal for identifying novel splicing patterns.</li>
+        <li><b>Full Read Layout:</b> Visualize individual read alignments to verify the physical co-occurrence of multiple splicing events.</li>
+        <li><b>Transcript Creator:</b> Manually architect hypothetical transcripts and "inject" them into the visualization to test your hypotheses against the experimental evidence.</li>
+    </ul>
+    
+    <div style="margin-top: 40px; padding: 15px; background-color: #f8f9fa; border-left: 5px solid #3498db; font-style: italic;">
+        Select a gene from the sidebar to begin your exploration.
+    </div>
+</div>

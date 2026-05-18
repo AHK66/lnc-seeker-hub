@@ -1,0 +1,3 @@
+[workspace]
+resolver = "3"
+members = ["lnc_seeker_lib", "lnc_seeker_collect"]

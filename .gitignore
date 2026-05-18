@@ -1,0 +1,19 @@
+/target
+/venv
+/.venv
+__pycache__/
+*.whl
+*.log
+venv_packages.txt
+config.json
+config_linux.cfg
+collection_summary.csv
+
+# Ignore editor settings
+.vscode/
+
+# Keep local helper scripts and dev-only entry points out of the public repo
+scripts/
+lnc_seeker_collect/src/unused.rs
+
+benchmarking/data/

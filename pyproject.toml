@@ -1,0 +1,32 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "lnc-seeker"
+version = "0.1.0"
+description = "Rust-backed lncRNA splice junction and coverage analysis toolkit with a Bokeh dashboard"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Apache-2.0" }
+authors = [
+	{ name = "Arne Kutzner" },
+	{ name = "Pok-Son Kim" },
+]
+keywords = ["bioinformatics", "lncrna", "rna-seq", "bokeh", "rust"]
+dependencies = [
+	"bokeh>=3.8.0,<4.0",
+	"pandas>=1.5.0",
+	"numpy>=1.20.0",
+	"psutil",
+]
+
+[project.urls]
+Homepage = "https://github.com/AHK66/lnc-seeker-hub"
+Repository = "https://github.com/AHK66/lnc-seeker-hub"
+Issues = "https://github.com/AHK66/lnc-seeker-hub/issues"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+module-name = "lnc_seeker"
+manifest-path = "lnc_seeker_lib/Cargo.toml"

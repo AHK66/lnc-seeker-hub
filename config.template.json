@@ -1,0 +1,165 @@
+{
+    "data_selection": {
+        "bam_collection_dir": "C:/path/to/BAM_collections",
+        "gtf_paths": [
+            "C:/path/to/reference_annotations_1.sorted.gtf.gz",
+            "C:/path/to/reference_annotations_2.sorted.gtf.gz",
+            "C:/path/to/reference_annotations_3.sorted.gtf.gz"
+        ],
+        "genome_path": "C:/path/to/reference_genome.fa",
+        "assembly_report_path": "C:/path/to/assembly_report.txt",
+        "filter_outliers": false,
+        "gtf_offsets": {
+            "reference_annotations_2.sorted.gtf.gz": 1
+        },
+        "max_cache_memory_mb": 8192.0
+    },
+    "coverage_and_junctions_profile": {
+        "plot_height": 200,
+        "min_mapping_quality": 20,
+        "show_xaxis": false,
+        "show_legend": false,
+        "normalize_by_samples": false,
+        "normalize_junctions_by_samples": false,
+        "adapt_global_y_range_to_normalization": true,
+        "y_axis_styles": {
+            "absolute": {
+                "label_text_color": "midnightblue",
+                "major_label_text_color": "midnightblue",
+                "major_tick_line_color": "midnightblue",
+                "minor_tick_line_color": "black",
+                "sub_text": "(absolute)"
+            },
+            "normalized": {
+                "label_text_color": "firebrick",
+                "major_label_text_color": "firebrick",
+                "major_tick_line_color": "firebrick",
+                "minor_tick_line_color": "black",
+                "sub_text": "(normalized)"
+            }
+        },
+        "coverage_components": {
+            "show_background": false,
+            "show_foreground": false,
+            "coverage_styles": {
+                "background": {
+                    "color": "yellowgreen",
+                    "line_width": 1,
+                    "alpha": 0.9,
+                    "label": "All Reads (BG)"
+                },
+                "foreground": {
+                    "color": "navy",
+                    "line_width": 1.5,
+                    "alpha": 0.7,
+                    "label": "HQ Reads (FG)"
+                }
+            },
+            "optimized_coverage": {
+                "line_color": "gray",
+                "line_width": 1,
+                "cliff_width": 3,
+                "cliff_alpha": 0.8,
+                "trend_alpha": 0.8,
+                "area_alpha": 0.15
+            }
+        },
+        "high_ambiguity_highlighting": {
+            "ambiguity_min_mapping_quality": 20,
+            "ambiguity_highlight": {
+                "color": "yellow",
+                "alpha": 0.3,
+                "threshold": 2.5
+            }
+        }
+    },
+    "junctions_splicing": {
+        "junction_colors": {
+            "curated": ["green", "darkgreen"],
+            "predicted": ["orange", "darkorange"],
+            "marked": ["purple", "indigo"],
+            "novel": ["firebrick", "darkred"]
+        }
+    },
+    "genome_annotations": {
+        "plot_height": 350,
+        "show_xaxis": false,
+        "show_intron_direction": false,
+        "feature_alpha": 0.8,
+        "transcript_colors": {
+            "NM_": "green",
+            "NR_": "indigo",
+            "XM_": "orange",
+            "XR_": "brown",
+            "default": "darkgray"
+        },
+        "selection_style": {
+            "color": "red",
+            "alpha": 0.4,
+            "line_color": "darkred",
+            "line_width": 1,
+            "height": 0.2
+        }
+    },
+    "full_read_layout": {
+        "plot_height": 400,
+        "max_extracted_reads": 100,
+        "show_xaxis": false,
+        "show_legend": false,
+        "show_reads_line_width": 8,
+        "vertical_gap": 8,
+        "reads_vertical_squeeze": 0.6,
+        "min_vertical_squeeze": 0.0125,
+        "max_vertical_squeeze": 1,
+        "show_deletion_markers": true,
+        "layout_styles": {
+            "exon_single": { "color": "royalblue", "alpha": 0.5, "variant_color": "midnightblue" },
+            "exon_mate": { "color": "firebrick", "alpha": 0.5, "variant_color": "darkred" },
+            "intron_target": { "color": "black", "line_width": 1.5, "line_dash": "solid" },
+            "intron_other": { "color": "gray", "line_width": 1, "line_dash": "solid" },
+            "deletion": { "color": "red", "line_width": 2, "alpha": 0.9, "marker": "x", "marker_size": 10 },
+            "mate_bridge": { "color": "orange", "line_width": 1, "alpha": 0.8, "line_dash": [5, 5] },
+            "label_intron": { "color": "black", "font_size": "7pt" },
+            "label_bridge": { "color": "red", "font_size": "7pt" },
+            "label_sample": { "color": "white", "font_size": "10pt", "background_color": "midnightblue", "background_alpha": 0.7, "background_height": 20 }
+        }
+    },
+    "transcript_creator": {
+        "show_xaxis": false,
+        "show_intron_direction": false,
+        "auto_focus": true
+    },
+    "general": {
+        "sidebar_plot_spacing": 5,
+        "enable_benchmarking": true,
+        "suppress_bokeh_warnings": true,
+        "output_backend": "canvas",
+        "fixed_width": false,
+        "plot_width": 1200,
+        "status_colors": {
+            "normal": { "bg": "#e1f5fe", "fg": "#01579b" },
+            "tumor": { "bg": "#feebee", "fg": "#c62828" },
+            "default": { "bg": "#e1f5fe", "fg": "#01579b" }
+        },
+        "crosshair": {
+            "color": "red",
+            "horizontal_color": "darkorange",
+            "width": 1,
+            "alpha": 0.8
+        },
+        "extension_boundaries": {
+            "core": {
+                "color": "firebrick",
+                "line_width": 2,
+                "line_dash": "solid",
+                "alpha": 0.8
+            },
+            "extraction": {
+                "color": "navy",
+                "line_width": 2,
+                "line_dash": "dashed",
+                "alpha": 0.8
+            }
+        }
+    }
+}
