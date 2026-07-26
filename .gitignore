@@ -20,4 +20,4 @@ benchmarking/data/
 
 # Local analysis outputs (junction comparison)
 junction_comparison_output*/
-junction_comparison/
+junction_comparison_local/
