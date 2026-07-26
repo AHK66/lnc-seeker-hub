@@ -25,6 +25,7 @@ def parse_config(path: str) -> dict:
         'genome': None,
         'output_dir': 'junction_comparison_output',
         'cache_dir': None,
+        'assembly_report_path': None,
         'gene_regions': [],
         'bam_files': [],
         'resolved_regions': [],
@@ -53,6 +54,8 @@ def parse_config(path: str) -> dict:
                 result['output_dir'] = value
             elif key == 'cache_dir':
                 result['cache_dir'] = value
+            elif key == 'assembly_report_path':
+                result['assembly_report_path'] = value
             elif key == 'gene_region':
                 result['gene_regions'].append(value)
             elif key == 'bam':
