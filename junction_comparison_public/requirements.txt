@@ -1,0 +1,2 @@
+# Core analysis scripts use stdlib only.
+# The lnc_seeker Rust module is required separately (maturin develop --release).

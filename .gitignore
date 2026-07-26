@@ -17,3 +17,7 @@ scripts/
 lnc_seeker_collect/src/unused.rs
 
 benchmarking/data/
+
+# Local analysis outputs (junction comparison)
+junction_comparison_output*/
+junction_comparison/
