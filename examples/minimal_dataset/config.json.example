@@ -1,0 +1,10 @@
+{
+    "data_selection": {
+        "bam_collection_dir": "collect_output",
+        "gtf_paths": [
+            "annotation.gtf.gz"
+        ],
+        "assembly_report_path": "assembly_report.txt",
+        "max_cache_memory_mb": 4096.0
+    }
+}

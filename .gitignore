@@ -21,3 +21,6 @@ benchmarking/data/
 # Local analysis outputs (junction comparison)
 junction_comparison_output*/
 junction_comparison_local/
+
+# Generated caches from the minimal example dataset smoke test
+examples/minimal_dataset/collect_output/
