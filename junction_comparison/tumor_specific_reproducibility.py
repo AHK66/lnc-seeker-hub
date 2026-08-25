@@ -24,9 +24,12 @@ Definitions (junction identity = unstranded (chrom, start, end)):
 Usage:
     python3 tumor_specific_reproducibility.py [--base PATH] [--out PATH]
 
-  --base  repo root holding the Note-6 pipeline outputs
-         (junction_comparison_output{,_brca_normal,_prad,_gse235167}/)
-  --out   directory for the result CSVs (default: tumor_specific_repro/ here)
+The Note-6 pipeline data (junction_comparison_output*/...) is located as:
+  1. --base PATH, if given; else
+  2. the LNC_SEEKER_DATA environment variable, if set; else
+  3. the repository root (parent of the junction_comparison/ dir holding this
+     script), which works when the pipeline was run in the same checkout.
+No machine-specific path is hard-coded.  --out defaults to tumor_specific_repro/.
 """
 
 import argparse
@@ -39,9 +42,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from compare_junctions import load_junctions, filter_by_region, build_sets  # noqa: E402
 
-# Default: the local checkout where the Note-6 pipeline was run and its
-# per-region J_LSH TSVs + resolved config + annotation TSVs live.
-DEFAULT_BASE = "/path/to/lnc-seeker-hub"
+ENV_BASE = "LNC_SEEKER_DATA"
 GENES = ["ACTB", "PCA3", "CD44", "MALAT1", "GAPDH", "TP53"]
 THRESHOLDS = [1, 2, 5, 10]
 # Note-6 published |J_LSH| totals per threshold (Supplementary Table 6.3),
@@ -50,6 +51,32 @@ NOTE6 = {"tumor": {1: 323, 2: 272, 5: 216, 10: 181},
          "normal": {1: 245, 2: 191, 5: 152, 10: 128},
          "prad": {1: 320, 2: 259, 5: 198, 10: 174},
          "pdx": {1: 806, 2: 533, 5: 255, 10: 185}}
+
+
+def resolve_base(cli_base: str) -> str:
+    """Locate the Note-6 pipeline data without a hard-coded path.
+
+    Precedence: explicit --base > $LNC_SEEKER_DATA > the repository root
+    (the parent of the junction_comparison/ dir containing this script),
+    which is valid when the pipeline was run in the same checkout.
+    """
+    if cli_base:
+        return cli_base
+    env = os.environ.get(ENV_BASE)
+    if env:
+        return env
+    return os.path.dirname(HERE)
+
+
+def require_data(base: str) -> None:
+    marker = os.path.join(base, "junction_comparison_output", "config_resolved.json")
+    if not os.path.isfile(marker):
+        sys.exit(
+            f"error: no Note-6 pipeline data found at {base!r}.\n"
+            f"       expected {marker!r}\n"
+            f"       Pass --base PATH (or set {ENV_BASE}=PATH) to the repository root\n"
+            f"       containing the junction_comparison_output*/ directories."
+        )
 
 
 def cohort_dirs(base: str) -> dict:
@@ -83,12 +110,16 @@ def load_known(directories: dict) -> set:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--base", default=DEFAULT_BASE, help="repo root with Note-6 pipeline outputs")
+    ap.add_argument("--base", default=None,
+                    help=f"repo root with Note-6 pipeline outputs "
+                         f"(default: ${ENV_BASE}, else the repository root)")
     ap.add_argument("--out", default=os.path.join(HERE, "tumor_specific_repro"), help="output CSV directory")
     args = ap.parse_args()
 
-    dirs = cohort_dirs(args.base)
-    regions = load_regions(args.base)
+    base = resolve_base(args.base)
+    require_data(base)
+    dirs = cohort_dirs(base)
+    regions = load_regions(base)
     known = load_known(dirs)
     os.makedirs(args.out, exist_ok=True)
 
