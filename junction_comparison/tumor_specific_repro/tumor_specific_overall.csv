@@ -1,0 +1,5 @@
+threshold,tumor_specific,repro_in_pdx,repro_frac,neg_in_prad,breast_tumor_specific,breast_ts_repro_in_pdx,breast_ts_repro_frac,novel_ts,novel_repro_in_pdx,novel_repro_frac
+1,137,54,0.3942,33,104,29,0.2788,129,48,0.3721
+2,117,54,0.4615,27,90,33,0.3667,108,47,0.4352
+5,85,29,0.3412,16,69,20,0.2899,82,27,0.3293
+10,69,23,0.3333,16,53,13,0.2453,61,16,0.2623
